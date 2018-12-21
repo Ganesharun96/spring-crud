@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-
+import org.hibernate.dialect.pagination.FirstLimitHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -13,8 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.CustomerModel;
+
 import com.example.demo.service.CustomerService;
 
 
@@ -24,15 +26,12 @@ public class CustomerController {
 	@Autowired
 	
 	private CustomerService customerservice;
+    
+	@RequestMapping(value="/first",method=RequestMethod.GET)
+	public String First() {
+	return "FirstPage";	
+	}
 	
-//	@RequestMapping(value="/list",method=RequestMethod.GET)
-//	public String CustomerModel(Model model) {
-//		List<CustomerModel> cmodels= customerService.disp();
-//		model.addAttribute("lists",cmodels);
-//				
-//		return "Full";
-//		
-//	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String read(Model model) {
@@ -40,31 +39,82 @@ public class CustomerController {
 		model.addAttribute("show", new CustomerModel());
 		return "Display";
 	}
-	@RequestMapping(value="/add", method= RequestMethod.POST)
-	public String printRepaymentSchedule(@Valid @ModelAttribute("show")CustomerModel customermodel,BindingResult result)	{
+//	@RequestMapping(value="/add",method=RequestMethod.POST)
+//	public String readf(@ModelAttribute("show")CustomerModel customerModel,Model model) {
+//		
+//		model.addAttribute("show", customerModel);
+//		return "Display";
+//	}
+
+	
+	
+
+	@RequestMapping(value="/adder", method= RequestMethod.GET)
+	public String printSchedule(Model model)	{
+		
+//		List<CustomerModel> disp=customerservice.calc();
+		
+		model.addAttribute("results",customerservice.calc());
+          return "Print";
+			    }
+//	
+	@RequestMapping(value="/adder", method= RequestMethod.POST)
+	public String printRepaymentSchedule(@Valid @ModelAttribute("show")CustomerModel customermodel,BindingResult result,Model model)	{
 		
 		if(result.hasErrors()) {
 			
 			            return  "Display";
-			            
-			            }
-		customerservice.method(customermodel);
+			             }
+		 customerservice.method(customermodel);
+//		customerservice.calc(model);
 		
-		
-//		CustomerModel	curmodel=new CustomerModel();
-//		curmodel.setCreatedBy(customermodel.getCreatedBy());
-//		curmodel.setCustomerAddress(customermodel.getCustomerAddress());
-//		curmodel.setCustomerPincode(customermodel.getCustomerPincode());
-//		curmodel.setCustomerEmail(customermodel.getCustomerEmail());
-//		curmodel.setCustomerName(customermodel.getCustomerName());
-//		curmodel.setCustomerNumber(customermodel.getCustomerNumber());
-//		curmodel.setModifiedDate(customermodel.getModifiedDate());
-//		curmodel.setRegistrationDate(customermodel.getRegistrationDate());
-//		curmodel.setCustomerCode(customermodel.getCustomerCode());
-//		customerrepository.save(curmodel);
-		return "Print";
+		model.addAttribute("results",customerservice.calc());
+          return "Print";
 			    }
+	
+	@RequestMapping(value="/search", method =  RequestMethod.GET)
+	public String searchno(Model model)
+	{	
+		model.addAttribute("put",new CustomerModel());
 
-       
+        return "Searchget";
+	}
+	@RequestMapping(value="/final", method =  RequestMethod.POST)
+	public String printsearchNo(Model model, CustomerModel customermodel)
+	{	
+	customerservice.search(model, customermodel);
+        return "Searchershow";
+	}
+	
+	@RequestMapping(value="/delete", method =  RequestMethod.GET)
+	public String deleteno(Model model)
+	{	
+		model.addAttribute("deleted",new CustomerModel());
+
+        return "Deleteget";
+	}
+	@RequestMapping(value="/deleting", method =  RequestMethod.POST)
+	public String printdeleteno(@ModelAttribute("deleted")CustomerModel customermodel )
+	{	
+	customerservice.delete(customermodel);
+        return "Deletepost";
+	}
+	@RequestMapping(value="/update", method =  RequestMethod.GET)
+	public String updateno(Model model)
+	{	
+		model.addAttribute("updated",new CustomerModel());
+
+        return "Updateget";
+	}
+
+	@RequestMapping(value="/updating", method =  RequestMethod.POST)
+	public String printupdate(@ModelAttribute("updated")CustomerModel customermodel )
+	{	
+	customerservice.update(customermodel);
+        return "redirect:/add";
+	}
+	
+	
+	
 		
 }

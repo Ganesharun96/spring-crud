@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*" import = "java.text.SimpleDateFormat"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -87,19 +87,13 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 </style>
- <%
-  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
-  String date = sdf.format(new Date());
-%>
-
-
 </head>
 <body>
 
 	<div class="topnav" id="myTopnav">
-		<a href="/add" class="active">HOME</a> <a href="/adder "
+		<a href="/add">HOME</a> <a href="/adder"
 			>CUSTOMERSDETAILS</a> <a href="/delete">DELETE</a>
-			<a href="/update">UPDATE</a><a href="/search">SEARCH</a>
+			<a href="/update">UPDATE</a><a href="/search" class="active">SEARCH</a>
 	 <i class="fa fa-bars"></i>
 		</a>
 	</div>
@@ -107,62 +101,46 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>WELCOME</h2>
+			<h2>CUSTOMER DETAILS</h2>
 		</div>
 	</div>
 	
 
-	<form:form action="adder" modelAttribute="show" method="POST">
-customerID: <form:input path="customerCode" />
- <td><form:errors path="customerCode" cssStyle="color: #ff0000;"/></td>
+	<div id="container">
 
-		<br>
-		<br>
+		<div id="content">
 
-customerName: <form:input path="customerName" />
- <td><form:errors path="customerName" cssStyle="color: #ff0000;"/></td>
 
-		<br>
-		<br>
-customerAddress:<form:input path="customerAddress" />
- <td><form:errors path="customerAddress" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-customerPincode: <form:input path="customerPincode" />
- <td><form:errors path="customerPincode" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-customerEmail:<form:input path="customerEmail" />
- <td><form:errors path="customerEmail" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-customerNumber:<form:input path="customerNumber" />
- <td><form:errors path="customerNumber" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-registrationDate:<form:input type="hidden" path="registrationDate" value="<%=date%>" />
-        <br>
-		<br>
-createdBy:<form:input path="createdBy"/>
- <td><form:errors path="createdBy" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-modifiedDate:<form:input path="modifiedDate" />
- <td><form:errors path="modifiedDate" cssStyle="color: #ff0000;"/></td>
-
-		 <br>
-		<br>
+<table>
+			<tr><th>Customer Code</th>
+				<th>Customer Name</th>
+				<th>Customer Address</th>
+				<th>Customer Pincode</th>
+				<th>Customer E-mail</th>
+				<th>Customer Number</th>
+				<th>Registration Date</th>
+				<th>Created By</th>
+				<th>Modified Date</th>
 		
-		<input type="submit" value="submit" />
-		<br><br>
-	</form:form>
+			</tr>
+<!-- 		</table> -->
+<%-- 		<c:forEach  var="element" items="${results}"> --%>
+				<tr>
+				<th>${put.customerCode}</th> 
+					<th>${put.customerName}</th>
+					<th>${put.customerAddress}</th>
+					<th>${put.customerPincode}</th>
+					<th>${put.customerEmail}</th>
+					<th>${put.customerNumber}</th>
+					<th>${put.registrationDate}</th>
+					<th>${put.createdBy}</th>
+					<th>${put.modifiedDate}</th>
+				</tr>
+<%-- 			</c:forEach> --%>
+		</table>
 
-<a href="/first"> Back</a><br>
+
+
 </body>
 </html>
 

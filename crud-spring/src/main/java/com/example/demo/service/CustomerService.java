@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.ui.Model;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.example.demo.model.CustomerModel;
 import com.example.demo.repository.CustomerRepository;
@@ -13,15 +14,11 @@ public class CustomerService implements CustomerServiceInterface {
 	@Autowired 
 	CustomerRepository customerrepository;
 
-	@Override
-	public List<CustomerModel> disp() {
-		// TODO Auto-generated method stub
-		return customerrepository.findAll();
-	}
+
 
 	@Override
 	public void method(CustomerModel customermodel) {
-		// TODO Auto-generated method stub
+	
 		CustomerModel	cmodel=new CustomerModel();
 		
 		cmodel.setCreatedBy(customermodel.getCreatedBy());
@@ -33,10 +30,71 @@ public class CustomerService implements CustomerServiceInterface {
 		cmodel.setModifiedDate(customermodel.getModifiedDate());
 		cmodel.setRegistrationDate(customermodel.getRegistrationDate());
 		cmodel.setCustomerCode(customermodel.getCustomerCode());
-		customerrepository.save(cmodel);
+	
+	
+
+ customerrepository.save(cmodel);
+	}
+
+
+
+	@Override
+	public List<CustomerModel> calc() {
+		// TODO Auto-generated method stub
+		
+		return customerrepository.findAll();
+	}
+
+
+
+//	@Override
+//	public void searcher(int customerCode, Model model) {
+//		model.addAttribute("put",customerrepository.findById(customerCode));
+//		
+//	}
+
+
+
+	@Override
+	public void search(Model model, CustomerModel customermodel) {
+		model.addAttribute("put",customerrepository.findBycustomerCode(customermodel.getCustomerCode()));
 		
 	}
 
+
+
+	@Override
+	public void delete( CustomerModel customermodel) {
+		customerrepository.delete(customermodel);
+		
+		
+		
+	}
+
+
+
+	@Override
+	public void update(CustomerModel customermodel) {
+		customerrepository.findBycustomerCode(customermodel.getCustomerCode());
+		
+		
+	}
+
+
+
+	
+	
+
+
+	
+
+//	@Override
+//	public List<CustomerModel> calc(Model model) {
+//		model.addAttribute("results",customerrepository.findAll());
+//		return customerrepository.findAll();
+//	}
+
+	
 	
 		 
 	}

@@ -112,7 +112,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 	</div>
 	
 
-	<form:form action="adder" modelAttribute="show" method="POST">
+	<form:form action="" modelAttribute="show" method="POST">
 customerID: <form:input path="customerCode" />
  <td><form:errors path="customerCode" cssStyle="color: #ff0000;"/></td>
 

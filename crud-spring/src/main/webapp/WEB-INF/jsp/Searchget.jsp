@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*" import = "java.text.SimpleDateFormat"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -87,19 +87,13 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 </style>
- <%
-  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
-  String date = sdf.format(new Date());
-%>
-
-
 </head>
 <body>
 
 	<div class="topnav" id="myTopnav">
-		<a href="/add" class="active">HOME</a> <a href="/adder "
+		<a href="/add">HOME</a> <a href="/adder"
 			>CUSTOMERSDETAILS</a> <a href="/delete">DELETE</a>
-			<a href="/update">UPDATE</a><a href="/search">SEARCH</a>
+			<a href="/update">UPDATE</a><a href="/search" class="active">SEARCH</a>
 	 <i class="fa fa-bars"></i>
 		</a>
 	</div>
@@ -107,62 +101,23 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>WELCOME</h2>
+			<h2>CUSTOMER DETAILS</h2>
 		</div>
 	</div>
 	
 
-	<form:form action="adder" modelAttribute="show" method="POST">
-customerID: <form:input path="customerCode" />
- <td><form:errors path="customerCode" cssStyle="color: #ff0000;"/></td>
+	<div id="container">
 
-		<br>
-		<br>
+		<div id="content">
 
-customerName: <form:input path="customerName" />
- <td><form:errors path="customerName" cssStyle="color: #ff0000;"/></td>
 
-		<br>
-		<br>
-customerAddress:<form:input path="customerAddress" />
- <td><form:errors path="customerAddress" cssStyle="color: #ff0000;"/></td>
 
-		<br>
-		<br>
-customerPincode: <form:input path="customerPincode" />
- <td><form:errors path="customerPincode" cssStyle="color: #ff0000;"/></td>
+			<form:form action= "final" modelAttribute="put" method="POST"> 
+					Enter code for search <form:input type="number" path="customerCode"/>
+					 <input type="submit" value="Submit">
+					</form:form>
 
-		<br>
-		<br>
-customerEmail:<form:input path="customerEmail" />
- <td><form:errors path="customerEmail" cssStyle="color: #ff0000;"/></td>
 
-		<br>
-		<br>
-customerNumber:<form:input path="customerNumber" />
- <td><form:errors path="customerNumber" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-registrationDate:<form:input type="hidden" path="registrationDate" value="<%=date%>" />
-        <br>
-		<br>
-createdBy:<form:input path="createdBy"/>
- <td><form:errors path="createdBy" cssStyle="color: #ff0000;"/></td>
-
-		<br>
-		<br>
-modifiedDate:<form:input path="modifiedDate" />
- <td><form:errors path="modifiedDate" cssStyle="color: #ff0000;"/></td>
-
-		 <br>
-		<br>
-		
-		<input type="submit" value="submit" />
-		<br><br>
-	</form:form>
-
-<a href="/first"> Back</a><br>
 </body>
 </html>
 
