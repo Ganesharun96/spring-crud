@@ -116,8 +116,34 @@ tr:nth-child(even){background-color: #f2f2f2}
 					Enter code for search <form:input type="number" path="customerCode"/>
 					 <input type="submit" value="Submit">
 					</form:form>
-
-
+<br><br>
+<table>
+			<tr><th>Customer Code</th>
+				<th>Customer Name</th>
+				<th>Customer Address</th>
+				<th>Customer Pincode</th>
+				<th>Customer E-mail</th>
+				<th>Customer Number</th>
+				<th>Registration Date</th>
+				<th>Created By</th>
+				<th>Modified Date</th>
+		
+			</tr>
+<!-- 		</table> -->
+<%-- 		<c:forEach  var="element" items="${results}"> --%>
+				<tr>
+				<th>${put.customerCode}</th> 
+					<th>${put.customerName}</th>
+					<th>${put.customerAddress}</th>
+					<th>${put.customerPincode}</th>
+					<th>${put.customerEmail}</th>
+					<th>${put.customerNumber}</th>
+					<th>${put.registrationDate}</th>
+					<th>${put.createdBy}</th>
+					<th>${put.modifiedDate}</th>
+				</tr>
+<%-- 			</c:forEach> --%>
+		</table>
 </body>
 </html>
 

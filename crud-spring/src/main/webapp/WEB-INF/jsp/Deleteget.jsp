@@ -116,6 +116,38 @@ tr:nth-child(even){background-color: #f2f2f2}
 					Enter code for delete <form:input type="number" path="customerCode"/>
 					 <input type="submit" value="Submit">
 					</form:form>
+					
+	<br><br>				
+				<table>
+			<tr>
+			<th>Customer Code</th>
+				<th>Customer Name</th>
+				<th>Customer Address</th>
+				<th>Customer Pincode</th>
+				<th>Customer E-mail</th>
+				<th>Customer Number</th>
+				<th>Registration Date</th>
+				<th>Created By</th>
+				<th>Modified Date</th>
+		
+			</tr>
+<!-- 		</table> -->
+<%-- 		<c:forEach  var="element" items="${results}"> --%>
+				<tr>
+				<th>${deleted.customerCode}</th> 
+					<th>${deleted.customerName}</th>
+					<th>${deleted.customerAddress}</th>
+					<th>${deleted.customerPincode}</th>
+					<th>${deleted.customerEmail}</th>
+					<th>${deleted.customerNumber}</th>
+					<th>${deleted.registrationDate}</th>
+					<th>${deleted.createdBy}</th>
+					<th>${deleted.modifiedDate}</th>
+				</tr>
+<%-- 			</c:forEach> --%>
+		</table>	
+					
+					
 
 
 </body>

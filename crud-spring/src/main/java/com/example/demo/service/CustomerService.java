@@ -40,7 +40,7 @@ public class CustomerService implements CustomerServiceInterface {
 
 	@Override
 	public List<CustomerModel> calc() {
-		// TODO Auto-generated method stub
+	
 		
 		return customerrepository.findAll();
 	}
@@ -74,8 +74,8 @@ public class CustomerService implements CustomerServiceInterface {
 
 
 	@Override
-	public void update(CustomerModel customermodel) {
-		customerrepository.findBycustomerCode(customermodel.getCustomerCode());
+	public void update(CustomerModel customermodel,Model model) {
+		model.addAttribute("show",customerrepository.findBycustomerCode(customermodel.getCustomerCode()));
 		
 		
 	}

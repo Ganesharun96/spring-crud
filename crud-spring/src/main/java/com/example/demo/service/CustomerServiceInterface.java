@@ -13,5 +13,5 @@ public void method(CustomerModel customermodel);
 //public void searcher(int id,Model model);
 public void search(Model model,CustomerModel customermodel);
 public void delete(CustomerModel customermodel);
-public void update(CustomerModel customermodel);
+public void update(CustomerModel customermodel,Model model);
 }

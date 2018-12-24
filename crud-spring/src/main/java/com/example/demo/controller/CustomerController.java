@@ -83,7 +83,7 @@ public class CustomerController {
 	public String printsearchNo(Model model, CustomerModel customermodel)
 	{	
 	customerservice.search(model, customermodel);
-        return "Searchershow";
+        return "Searchget";
 	}
 	
 	@RequestMapping(value="/delete", method =  RequestMethod.GET)
@@ -97,22 +97,29 @@ public class CustomerController {
 	public String printdeleteno(@ModelAttribute("deleted")CustomerModel customermodel )
 	{	
 	customerservice.delete(customermodel);
-        return "Deletepost";
+        return "Deleteget";
 	}
 	@RequestMapping(value="/update", method =  RequestMethod.GET)
-	public String updateno(Model model)
+	public String updateno(Model model,CustomerModel customermodel)
 	{	
-		model.addAttribute("updated",new CustomerModel());
+		model.addAttribute("updated",customermodel);
 
         return "Updateget";
 	}
 
 	@RequestMapping(value="/updating", method =  RequestMethod.POST)
-	public String printupdate(@ModelAttribute("updated")CustomerModel customermodel )
-	{	
-	customerservice.update(customermodel);
-        return "redirect:/add";
+	public String printupdate(CustomerModel customermodel,Model model )
+	{
+		customerservice.update(customermodel,model);
+		return "Display";
+//		return "Updateshow";
+		
+//	customerservice.update(customermodel);
+//        return "redirect:/add";
 	}
+	
+	
+	
 	
 	
 	
